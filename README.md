@@ -6,7 +6,7 @@
 
 
 
-#Сборка Docker-образа \
+Сборка Docker-образа \
 docker build -t SOFT - f Dockerfile . \
-#Запуск Docker-образа осуществляется следующей командой \
+Запуск Docker-образа осуществляется следующей командой \
 docker run -it
