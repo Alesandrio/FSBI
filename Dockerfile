@@ -1,5 +1,5 @@
 FROM ubuntu:18.04
-RUN mkdir SOFT
+RUN mkdir /SOFT
 WORKDIR /SOFT
 RUN apt-get update && apt-get install gcc -y \
     apt-get install make \
