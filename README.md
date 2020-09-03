@@ -1,5 +1,5 @@
 # FSBI 
 Сборка Docker-образа \
-docker build - f Dockerfile . \
+docker build -t SOFT - f Dockerfile . \
 Запуск Docker-образа осуществляется следующей командой \
 docker run -it
