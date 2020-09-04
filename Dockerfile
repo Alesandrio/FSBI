@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install gcc -y \
     apt-get install libbz2-dev \
     apt-get install zlib1g-dev \
     apt-get install libncursesw5-dev \
-    apt-get install liblzma-dev
+    apt-get install liblzma-dev \
     && rm -rf /var/lib/apt/lists/*
 RUN https://github.com/samtools/samtools/releases/download/1.10/samtools-1.10.tar.bz2
 RUN tar -vxjf samtools-1.10.tar.bz2 && cd samtools-1.10
