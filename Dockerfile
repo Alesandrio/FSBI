@@ -1,12 +1,14 @@
 FROM ubuntu:18.04
 RUN mkdir /SOFT
 WORKDIR /SOFT
-RUN apt-get update && apt-get install gcc -y \
-    apt-get install make \
-    apt-get install libbz2-dev \
-    apt-get install zlib1g-dev \
-    apt-get install libncursesw5-dev \
-    apt-get install liblzma-dev \
+RUN sudo apt-get update \
+sudo apt-get install gcc \
+sudo apt-get install make \
+sudo apt-get install libbz2-dev \
+sudo apt-get install zlib1g-dev \
+sudo apt-get install libncurses5-dev \
+sudo apt-get install libncursesw5-dev \
+sudo apt-get install liblzma-dev \
     && rm -rf /var/lib/apt/lists/*
 ADD https://github.com/samtools/samtools/releases/download/1.10/samtools-1.10.tar.bz2 \
 /SOFT
