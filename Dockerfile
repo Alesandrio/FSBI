@@ -20,14 +20,21 @@ RUN tar -vxjf samtools-1.10.tar.bz2 \
 && make \
 && make install
 
-ADD https://gitlab.com/german.tischler/libmaus2/-/archive/2.0.749-release-20200827093918/libmaus2-2.0.749-release-20200827093918.tar.bz2 .
-RUN tar -vxjf libmaus2-2.0.749-release-20200827093918.tar.bz2 && cd libmaus2-2.0.749-release-20200827093918
-RUN autoreconf -i -f \
-&& ./configure —prefix=${SOFT}/libmaus \
-&& make install
+cd ${HOME}/lib
+git clone https://github.com/gt1/libmaus2.git
+cd libmaus2
+libtoolize
+aclocal
+autoheader
+automake --force-missing --add-missing
+autoconf
+./configure --prefix=${HOME}/lib/libmaus2
+make
+make install
 
-ADD https://github.com/gt1/biobambam2/archive/2.0.89-release-20180518145034.tar.gz .
-RUN tar -vxzf 2.0.89-release-20180518145034.tar.gz && cd 2.0.89-release-20180518145034
-RUN autoreconf -i -f \
-&& ./configure —with-libmaus2=${SOFT} —prefix=${SOFT}/biobambam2 \
-&& make install
+cd ${HOME}/lib
+git clone https://github.com/gt1/biobambam2.git
+cd biobambam2
+autoreconf -i -f
+./configure --with-libmaus2=${HOME}/lib/libmaus2 --prefix=${HOME}/lib/biobambam2
+make install
