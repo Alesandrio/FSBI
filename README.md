@@ -7,6 +7,6 @@
 
 
 Сборка Docker-образа \
-docker build -t SOFT - f /SOFT/Dockerfile . \
+docker build .
 Запуск Docker-образа осуществляется следующей командой \
-docker run -it
+docker run -it <image id> bash
