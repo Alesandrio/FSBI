@@ -20,7 +20,7 @@ RUN tar -vxjf samtools-1.10.tar.bz2 \
 && make \
 && make install
 
-RUN cd ${HOME}/lib \
+RUN cd ${HOME}/SOFT \
 && git clone https://github.com/gt1/libmaus2.git 
 RUN cd libmaus2 \
 && libtoolize \
@@ -28,13 +28,13 @@ RUN cd libmaus2 \
 && autoheader \
 && automake --force-missing --add-missing\
 && autoconf \
-&& ./configure --prefix=${HOME}/lib/libmaus2 \
+&& ./configure --prefix=${HOME}/SOFT/libmaus2 \
 && make \
 &&make install
 
-RUN cd ${HOME}/lib \
+RUN cd ${HOME}/SOFT \
 && git clone https://github.com/gt1/biobambam2.git 
 RUN cd biobambam2 \
 && autoreconf -i -f \
-&& ./configure --with-libmaus2=${HOME}/lib/libmaus2 --prefix=${HOME}/lib/biobambam2 \
+&& ./configure --with-libmaus2=${HOME}/SOFT/libmaus2 --prefix=${HOME}/SOFT/biobambam2 \
 && make install
