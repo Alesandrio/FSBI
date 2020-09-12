@@ -13,6 +13,21 @@ RUN apt-get -y update \
 && apt-get install -y liblzma-dev \
 && rm -rf /var/lib/apt/lists/*
 
+RUN wget https://github.com/samtools/htslib/releases/download/1.10.2/htslib-1.10.2.tar.bz2 \
+&& tar -vxjf htslib-1.10.2.tar.bz2 \
+&& cd htslib-1.10.2 \
+&& autoheader \
+&& autoconf \
+&& ./configure \
+&& make \
+&& make install
+
+RUN wget https://github.com/ebiggers/libdeflate/archive/v1.6.tar.gz \
+&& tar -zxvf libdeflate-1.6.tar.gz \
+&& cd libdeflate-1.6 \
+&& make \
+&7 make install
+
 ADD https://github.com/samtools/samtools/releases/download/1.10/samtools-1.10.tar.bz2 .
 RUN tar -vxjf samtools-1.10.tar.bz2 \
 && cd samtools-1.10 \
