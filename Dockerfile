@@ -14,19 +14,19 @@ RUN apt-get -y update \
 && rm -rf /var/lib/apt/lists/*
 
 RUN cd ${HOME}/SOFT
-RUN wget https://github.com/samtools/htslib/releases/download/1.10.2/htslib-1.10.2.tar.bz2 \
-&& tar -vxjf htslib-1.10.2.tar.bz2 \
-&& cd htslib-1.10.2 \
-&& autoheader \
-&& autoconf \
+ADD https://github.com/samtools/samtools/releases/download/1.10/samtools-1.10.tar.bz2 .
+RUN tar -vxjf samtools-1.10.tar.bz2 \
+&& cd samtools-1.10 \
 && ./configure \
 && make \
 && make install
 
 RUN cd ${HOME}/SOFT
-ADD https://github.com/samtools/samtools/releases/download/1.10/samtools-1.10.tar.bz2 .
-RUN tar -vxjf samtools-1.10.tar.bz2 \
-&& cd samtools-1.10 \
+RUN wget https://github.com/samtools/htslib/releases/download/1.10.2/htslib-1.10.2.tar.bz2 \
+&& tar -vxjf htslib-1.10.2.tar.bz2 \
+&& cd htslib-1.10.2 \
+&& autoheader \
+&& autoconf \
 && ./configure \
 && make \
 && make install
