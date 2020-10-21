@@ -16,7 +16,7 @@ RUN apt-get -y update \
 RUN cd /SOFT
 RUN wget https://github.com/ebiggers/libdeflate/archive/v1.6.tar.gz \
 && tar -zxvf libdeflate-1.6.tar.gz \
-&& cd libdeflate-1.6
+&& cd libdeflate-1.6 \
 && ./configure --prefix=/SOFT/libdeflate-1.6 \
 && make \
 && make install
