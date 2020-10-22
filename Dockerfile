@@ -10,6 +10,7 @@ RUN apt-get -y update \
 && apt-get install -y libncurses5-dev \
 && apt-get install -y libncursesw5-dev \
 && apt-get install -y liblzma-dev \
+&& apt-get install -y wget \
 && rm -rf /var/lib/apt/lists/*
 
 RUN cd /SOFT
