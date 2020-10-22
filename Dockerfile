@@ -1,5 +1,4 @@
 FROM ubuntu:18.04
-RUN mkdir /SOFT
 WORKDIR /SOFT
 
 RUN apt-get -y update \
@@ -17,8 +16,7 @@ RUN cd /SOFT
 RUN wget https://github.com/ebiggers/libdeflate/archive/v1.6.tar.gz \
 && tar -zxvf v1.6.tar.gz \
 && cd libdeflate-1.6 \
-&& ./configure --prefix=/SOFT/libdeflate-1.6 \
-&& make \
+&& make prefix=/SOFT install \
 && make install
 
 RUN cd /SOFT
@@ -27,15 +25,15 @@ RUN wget https://github.com/samtools/htslib/releases/download/1.10.2/htslib-1.10
 && cd htslib-1.10.2 \
 && autoheader \
 && autoconf \
-&& ./configure --with-libdeflate-1.6=/SOFT/libdeflate-1.6 --prefix=/SOFT/htslib-1.10.2 \
+&& ./configure --with-libdeflate-1.6=/SOFT --prefix=/SOFT \
 && make \
 && make install
 
 RUN cd /SOFT
-ADD https://github.com/samtools/samtools/releases/download/1.10/samtools-1.10.tar.bz2 .
+ADD wget https://github.com/samtools/samtools/releases/download/1.10/samtools-1.10.tar.bz2 .
 RUN tar -vxjf samtools-1.10.tar.bz2 \
 && cd samtools-1.10 \
-&& ./configure --with-htslib-1.10.2=/SOFT/htslib-1.10.2 --prefix=/SOFT/samtools-1.10 \
+&& ./configure --with-htslib-1.10.2=/SOFT --prefix=/SOFT \
 && make \
 && make install
 
@@ -47,13 +45,13 @@ RUN cd libmaus2 \
 && autoheader \
 && automake --force-missing --add-missing\
 && autoconf \
-&& ./configure --prefix=/SOFT/libmaus2 \
+&& ./configure --prefix=/SOFT \
 && make \
-&&make install
+&& make install
 
 RUN cd /SOFT \
 && git clone https://github.com/gt1/biobambam2.git 
 RUN cd biobambam2 \
 && autoreconf -i -f \
-&& ./configure --with-libmaus2=/SOFT/libmaus2 --prefix=/SOFT/biobambam2 \
+&& ./configure --with-libmaus2=/SOFT --prefix=/SOFT \
 && make install
